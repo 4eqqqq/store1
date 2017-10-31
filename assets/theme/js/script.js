@@ -6,7 +6,7 @@
         var e = document.createElement("section");
         e.id = "top-1";
         e.className = "engine";
-        e.innerHTML = '<a href="https://mobirise.info">Mobirise</a> Mobirise v4.3.4';
+        e.innerHTML = '<a href="https://mobirise.info">Mobirise</a> Mobirise v4.3.5';
         document.body.insertBefore(e, document.body.childNodes[0]);
     }
 }();
@@ -646,27 +646,27 @@
         }
     });
 
-    $(document).ready(function() {
-        // Counters
-        if ($('.counters').length) {
-            $('.counters').viewportChecker({
-                offset: 200,
-                callbackFunction: function(elem, action) {
-                    $('#' + elem.attr('id') + ' .count').each(function() {
-                        $(this).prop('Counter', 0).animate({
-                            Counter: $(this).text()
-                        }, {
-                            duration: 3000,
-                            easing: 'swing',
-                            step: function(now) {
-                                $(this).text(Math.ceil(now));
-                            }
-                        });
-                    });
-                }
-            });
-        }
-    });
+    // $(document).ready(function() {
+    //     // Counters
+    //     if ($('.counters').length) {
+    //         $('.counters').viewportChecker({
+    //             offset: 200,
+    //             callbackFunction: function(elem, action) {
+    //                 $('#' + elem.attr('id') + ' .count').each(function() {
+    //                     $(this).prop('Counter', 0).animate({
+    //                         Counter: $(this).text()
+    //                     }, {
+    //                         duration: 3000,
+    //                         easing: 'swing',
+    //                         step: function(now) {
+    //                             $(this).text(Math.ceil(now));
+    //                         }
+    //                     });
+    //                 });
+    //             }
+    //         });
+    //     }
+    // });
 
     // arrow down
     if (!isBuilder) {
@@ -820,11 +820,7 @@
     }
 
     // Script for circle progress
-    
     function initCircleProgress(card) {
-        $ID = $(card).attr('id')+'-svg-gradient';
-        // console.log($ID);
-
         $('.pie_progress').asPieProgress({
             namespace: 'asPieProgress',
             classes: {
@@ -835,7 +831,7 @@
             max: 100,
             size: 150,
             speed: 30,
-            barsize: '8',
+            barsize: '12',
             fillcolor: 'none',
             easing: 'ease'
         });
@@ -843,14 +839,7 @@
         $(card).find('.pie_progress').each(function() {
             $(this).asPieProgress('go', $(this).attr('data-goal') + '%');
         });
-
-        $(card).find('svg linearGradient').attr('id',$ID);
-
-        $(card).find('.pie_progress svg path').each(function(){
-            $(this).attr('stroke','url(#'+$ID+')');
-        });
     }
-
 
     function setCurrentCircleProgress(card, paramName) {
         var $elem = $(card).find("." + paramName);
@@ -869,95 +858,92 @@
                 if ($('.pie_progress').length) {
                     setCurrentCircleProgress(event.target, paramName);
                 }
-                initCircleProgress(event.target);
             }
         });
     } else {
-        if ($('.circle-progress-section').length!=0) {
-            $('.circle-progress-section').each(function(){
-                initCircleProgress($(this));
-            });
+        if ($('.pie_progress').length) {
+            initCircleProgress(document.body);
         }
     }
 
     //Script for countdown
-    function initCountdown() {
-        $(".countdown:not(.countdown-inited)").each(function() {
-            $(this).addClass('countdown-inited').countdown($(this).attr('data-due-date'), function(event) {
+    // function initCountdown() {
+    //     $(".countdown:not(.countdown-inited)").each(function() {
+    //         $(this).addClass('countdown-inited').countdown($(this).attr('data-due-date'), function(event) {
                 
-                var $days = $(event.target).closest('.countdown-cont').find('div.daysCountdown').attr('title');
-                var $hours = $(event.target).closest('.countdown-cont').find('div.hoursCountdown').attr('title');
-                var $minutes = $(event.target).closest('.countdown-cont').find('div.minutesCountdown').attr('title');
-                var $seconds = $(event.target).closest('.countdown-cont').find('div.secondsCountdown').attr('title');             
-                $(this).html(
-                    event.strftime([
-                        '<div class="row">',
-                        '<div class="col-xs-12 col-sm-6 col-md-3">',
-                        '<span class="number-wrap">',
-                        '<span class="number display-2">%D</span>',
-                        '<span mbr-text class="period display-7">',$days,'</span>',
-                        '<span class="dot">:</span>',
-                        '</span>',
-                        '</div>',
-                        '<div class="col-xs-12 col-sm-6 col-md-3">',
-                        '<span class="number-wrap">',
-                        '<span class="number display-2">%H</span>',
-                        '<span mbr-text class="period display-7">',$hours,'</span>',
-                        '<span class="dot">:</span>',
-                        '</span>',
-                        '</div>',
-                        '<div class="col-xs-12 col-sm-6 col-md-3">',
-                        '<span class="number-wrap">',
-                        '<span class="number display-2">%M</span>',
-                        '<span mbr-text class="period display-7">',$minutes,'</span>',
-                        '<span class="dot">:</span>',
-                        '</span>',
-                        '</div>',
-                        '<div class="col-xs-12 col-sm-6 col-md-3">',
-                        '<span class="number-wrap">',
-                        '<span class="number display-2">%S</span>',
-                        '<span mbr-text class="period display-7">',$seconds,'</span>',
-                        '</span>',
-                        '</div>',
-                        '</div>'
-                    ].join(''))
-                );
-            });
-        });
+    //             var $days = $(event.target).closest('.countdown-cont').find('div.daysCountdown').attr('title');
+    //             var $hours = $(event.target).closest('.countdown-cont').find('div.hoursCountdown').attr('title');
+    //             var $minutes = $(event.target).closest('.countdown-cont').find('div.minutesCountdown').attr('title');
+    //             var $seconds = $(event.target).closest('.countdown-cont').find('div.secondsCountdown').attr('title');             
+    //             $(this).html(
+    //                 event.strftime([
+    //                     '<div class="row">',
+    //                     '<div class="col-xs-12 col-sm-6 col-md-3">',
+    //                     '<span class="number-wrap">',
+    //                     '<span class="number display-2">%D</span>',
+    //                     '<span mbr-text class="period display-7">',$days,'</span>',
+    //                     '<span class="dot">:</span>',
+    //                     '</span>',
+    //                     '</div>',
+    //                     '<div class="col-xs-12 col-sm-6 col-md-3">',
+    //                     '<span class="number-wrap">',
+    //                     '<span class="number display-2">%H</span>',
+    //                     '<span mbr-text class="period display-7">',$hours,'</span>',
+    //                     '<span class="dot">:</span>',
+    //                     '</span>',
+    //                     '</div>',
+    //                     '<div class="col-xs-12 col-sm-6 col-md-3">',
+    //                     '<span class="number-wrap">',
+    //                     '<span class="number display-2">%M</span>',
+    //                     '<span mbr-text class="period display-7">',$minutes,'</span>',
+    //                     '<span class="dot">:</span>',
+    //                     '</span>',
+    //                     '</div>',
+    //                     '<div class="col-xs-12 col-sm-6 col-md-3">',
+    //                     '<span class="number-wrap">',
+    //                     '<span class="number display-2">%S</span>',
+    //                     '<span mbr-text class="period display-7">',$seconds,'</span>',
+    //                     '</span>',
+    //                     '</div>',
+    //                     '</div>'
+    //                 ].join(''))
+    //             );
+    //         });
+    //     });
 
-        $(".countdown:not(.countdown-inited)").each(function() {
-            $(this).countdown($(this).attr('data-due-date'), function(event) {
-                $(this).text(
-                    event.strftime('%D days %H:%M:%S')
-                );
-            });
-        });
-    };
+    //     $(".countdown:not(.countdown-inited)").each(function() {
+    //         $(this).countdown($(this).attr('data-due-date'), function(event) {
+    //             $(this).text(
+    //                 event.strftime('%D days %H:%M:%S')
+    //             );
+    //         });
+    //     });
+    // };
 
-    function changeCountdown(card, value) {
-        var $reg = /\d\d\d\d\/\d\d\/\d\d/g,
-            $target = $(card).find('.countdown');
-        if (value.search($reg) > -1) {
-            $target.removeClass('countdown-inited');
-            initCountdown();
-        }
-    }
+    // function changeCountdown(card, value) {
+    //     var $reg = /\d\d\d\d\/\d\d\/\d\d/g,
+    //         $target = $(card).find('.countdown');
+    //     if (value.search($reg) > -1) {
+    //         $target.removeClass('countdown-inited');
+    //         initCountdown();
+    //     }
+    // }
 
-    if (isBuilder) {
-        $(document).on('add.cards', function(event) {
-            if ($('.countdown').length != 0) {
-                initCountdown();
-            }
-        }).on('changeParameter.cards', function(event, paramName, value) {
-            if (paramName === 'countdown') {
-                changeCountdown(event.target, value);
-            }
-        });;
-    } else {
-        if ($('.countdown').length != 0) {
-            initCountdown();
-        };
-    }
+    // if (isBuilder) {
+    //     $(document).on('add.cards', function(event) {
+    //         if ($('.countdown').length != 0) {
+    //             initCountdown();
+    //         }
+    //     }).on('changeParameter.cards', function(event, paramName, value) {
+    //         if (paramName === 'countdown') {
+    //             changeCountdown(event.target, value);
+    //         }
+    //     });;
+    // } else {
+    //     if ($('.countdown').length != 0) {
+    //         initCountdown();
+    //     };
+    // }
 
     // script for flip images
     function bendBottomCorner() {
@@ -1018,6 +1004,7 @@
 
         $target.find('.carousel').attr('id',$carouselID);
         $target.find('.carousel-controls a').attr('href','#'+$carouselID);
+        $target.find('.carousel-indicators li').attr('data-target','#'+$carouselID);
         setActiveCarouselItem($target);  
     }
     
@@ -1207,12 +1194,12 @@
     }
 
 // Table Block;
-function getRowCount(card){
+    function getRowCount(card){
         var $tbodyRows = $(card).find('.table tbody tr').length;
         $(card).find('.dataTables_info span.infoRows').text($tbodyRows);
     }
 
-    function initTable(card,isSearch, searchText, infoBefore, infoAfter, infoFilteredBefore, infoFilteredAfter){
+   function initTable(card,isSearch, searchText, infoBefore, infoAfter, infoFilteredBefore, infoFilteredAfter){
         var $target = $(card);
             $target.find('table').dataTable({
             retrieve:true,
@@ -1282,7 +1269,6 @@ function getRowCount(card){
         }
     }
 
-
 // Cards With Popup Buttons
     if (!isBuilder) {
         if ($('section.popup-btn-cards').length!=0) {
@@ -1290,193 +1276,5 @@ function getRowCount(card){
                 $(this).addClass('popup-btn');
             });
         }
-    }
-    
-// SVG gradient for blocks with svg gradients
-    function initSvgGradients(card) {
-        $ID = $(card).attr('id')+'-svg-gradient';
-        $(card).find('svg linearGradient').attr('id',$ID);      
-        $(card).find('svg.gradient-element').each(function(){
-            $(this).attr('stroke','url(#'+$ID+')');
-            $(this).attr('fill','url(#'+$ID+')');
-        });
-    }
-    if (isBuilder) {
-        $(document).on('add.cards', function(event) {
-            if($(event.target).hasClass('svg-gradient-elements')){
-                 initSvgGradients(event.target);
-            }
-        }).on('changeParameter.cards',function(event){
-            if($(event.target).hasClass('svg-gradient-elements')){
-                initSvgGradients(event.target);
-            }
-        });
-    } else {
-        $('section.svg-gradient-elements').each(function(){
-            initSvgGradients($(this));
-        })
-    }
-
-//Scroll-Background
-    function scrollBackground($target,speed) {
-        //var speed = $target.attr('data-speed');
-        // console.log(speed);
-        var _speed = speed;// * 1000;
-        $target.animate({
-            'background-position': -$(window).width()
-        }, _speed, "linear", function() {
-            $(this).css({
-                'background-position': '0px'
-            });
-        });
-        setInterval(function() {
-            $target.animate({
-                'background-position': -$(window).width()
-            }, _speed, "linear", function() {
-                $(this).css({
-                    'background-position': '0px'
-                });
-            });
-        }, _speed);
-    }
-
-    if (isBuilder){
-        $(document).on('add.cards',function(event) {
-            if($(event.target).hasClass('scroll-background')){
-                // var speed = $(event.target).attr('data-speed');
-                scrollBackground($(event.target),50000);
-            }    
-
-        });
-    }
-    else{
-        if($(document).find('.scroll-background').length!=0){
-            $('.scroll-background').each(function() {
-                // var speed = $(this).attr('data-speed');
-                scrollBackground($(this),50000);
-            });
-        }
-    }
-
-// Typed text
-    function initTyped(array, el){
-        $(el).typed({
-            strings: array,
-            typeSpeed: 101 - parseInt($(el).attr('data-speed')),
-            backSpeed: 101 - parseInt($(el).attr('data-speed')),
-            loop: true,
-            backDelay: 1000
-        });
-    }
-    if (isBuilder){
-        $(document).on('add.cards',function(event) {
-            if($(event.target).find('.typed-text').length!=0){
-                $(event.target).find('.animated-element').each(function(){
-                    var count = parseInt($(this).attr('data-words'));
-                    var wordsArray = [];
-                    for (var i = 1; i <= count; i++) {
-                        var attrName = 'data-word' + i;
-                        if(typeof $(this).attr(attrName) != 'undefined'){
-                            wordsArray.push($(this).attr(attrName));
-                        }
-                    }
-                    initTyped(wordsArray, $(this)); 
-                });
-            }
-        }).on('changeParameter.cards', function(event,paramName,value) {
-            if(paramName.indexOf('animatedWord') == 0 || paramName == 'typeSpeed' || paramName == 'wordsCount'){
-                $(event.target).find('.animated-element').each(function(){
-                    var count = parseInt($(this).attr('data-words'));
-                    var wordsArray = [];
-                    for (var i = 1; i <= count; i++) {
-                        var attrName = 'data-word' + i;
-                        if(typeof $(this).attr(attrName) != 'undefined'){
-                            wordsArray.push($(this).attr(attrName));
-                        }
-                    }
-                    initTyped(wordsArray, $(this));
-                });
-            }
-        });
-    }
-    else{
-        $('.typed-text .animated-element').each(function(){
-            var count = parseInt($(this).attr('data-words'));
-            var wordsArray = [];
-            for (var i = 1; i <= count; i++) {
-                var attrName = 'data-word' + i;
-                if(typeof $(this).attr(attrName) != 'undefined'){
-                    wordsArray.push($(this).attr(attrName));
-                }   
-            }
-            initTyped(wordsArray, $(this));
-        });
-    }
-
-// Animated Background Text
-    function animateBackgroundText(el, text, speed) {
-        $(el).stop();
-        var animatedElement = $(el).find('.animated-element');
-        animatedElement.text(text);
-        animatedElement.css({'white-space': 'nowrap',
-                             'z-index': 0});
-        $(el).css({'position' : 'absolute',
-                   'left' : document.body.clientWidth,
-                   'top' : 'calc(50% - ' + ($(el).height() / 2) + 'px)'});
-        $(el).animate({
-            'left': -$(el).width()
-        }, speed, "linear", function() {
-            $(this).css({
-                'left' : document.body.clientWidth
-            });
-        });
-        var intervalID = setInterval(function() {
-                        $(el).animate({
-                            'left': -$(el).width()
-                        }, speed, "linear", function() {
-                            $(this).css({
-                                'left' : document.body.clientWidth
-                            });
-                        });
-                    }, speed);
-        $(el).attr('id', 'interval' + intervalID);
-    }
-    if (isBuilder) {
-        $(document).on('delete.cards', function(event) {
-            if($(event.target).find('.animated-text-background').length != 0) {
-                var str = $(event.target).find('.animated-text-background').attr('id');
-                var intID = parseInt(str.substr(8));
-                clearInterval(intID);
-            }
-        });
-        $(document).on('add.cards', function(event) {
-            if ($(event.target).find('.animated-text-background').length != 0) {
-                $(event.target).find('.animated-text-background').each(function() {
-                    var speed = (101 - parseInt($(this).find('.animated-element').attr('data-speed'))) * 1000;
-                    var text = $(this).find('.animated-element').attr('data-word');
-                    animateBackgroundText($(this), text, speed); 
-                });
-            }
-        }).on('changeParameter.cards', function(event, paramName, value) {
-            if (paramName == 'animatedText' || paramName == 'textSpeed' || paramName == 'textTitle' || paramName == 'textSize') {
-                $(event.target).find('.animated-text-background').each(function(){
-                    var speed = (101 - parseInt($(this).find('.animated-element').attr('data-speed'))) * 1000;
-                    var text = $(this).find('.animated-element').attr('data-word');
-                    var str = $(this).attr('id');
-                    var intID = parseInt(str.substr(8));
-                    clearInterval(intID);
-                    $(this).clearQueue();
-                    animateBackgroundText($(this), text, speed);
-                });
-            }
-        });
-    }
-    else {
-        $('.animated-text-background').each(function(){
-            var speed = (101 - parseInt($(this).find('.animated-element').attr('data-speed'))) * 1000;
-            var text = $(this).find('.animated-element').attr('data-word');
-            animateBackgroundText($(this), text, speed);
-        });
-    }
-
+    } 
 })(jQuery);
